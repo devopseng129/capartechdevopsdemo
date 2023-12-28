@@ -1,0 +1,18 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('clone repo') {
+            steps {
+                // Get  code from a GitHub repository
+                git 'https://github.com/devopseng129/capartechdevopsdemo.git'
+            }
+        }
+        stage('docker build') {
+            steps {
+               sh 'docker build -t myimage:$BUILD_NUMBER .'
+            }
+        }
+    }
+}
+
